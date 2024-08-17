@@ -1,22 +1,3 @@
-<!--
-  
-=========================================================
-* Vision UI Free React - v1.0.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/vision-ui-dashboard-free-react
-* Copyright 2021 Creative Tim (https://www.creative-tim.com/)
-* Licensed under MIT (https://github.com/creativetimofficial/vision-ui-dashboard-react/blob/master/LICENSE.md)
-
-* Design and Coded by Simmmple & Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-
--->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -41,10 +22,61 @@
       href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
       rel="stylesheet"
     />
+    <!-- Firebase App (necessário para todos os apps Firebase) -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+    <!-- Firebase Analytics -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-analytics.js"></script>
+    <!-- Firebase Firestore (se necessário) -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js"></script>
+    <!-- Firebase Authentication (se necessário) -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
   </head>
 
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    
+    <script>
+      // Configuração do Firebase
+      const firebaseConfig = {
+        apiKey: "AIzaSyD2Rnyrld61oEEm7DgeI-PXyPVlHJDEBWk",
+        authDomain: "dl-server-garena-all-sqlmap.firebaseapp.com",
+        projectId: "dl-server-garena-all-sqlmap",
+        storageBucket: "dl-server-garena-all-sqlmap.appspot.com",
+        messagingSenderId: "523517697936",
+        appId: "1:523517697936:web:c31140ec850a70064f9d15",
+        measurementId: "G-WK6B0B51K9"
+      };
+
+      // Inicializar Firebase
+      const app = firebase.initializeApp(firebaseConfig);
+      const analytics = firebase.getAnalytics(app);
+
+      // Se você estiver usando Firestore ou Authentication, inicialize aqui
+      const db = firebase.firestore();
+      const auth = firebase.auth();
+
+      // Exemplo de uso: adicionar um documento ao Firestore
+      db.collection("users").add({
+        name: "John Doe",
+        email: "johndoe@example.com"
+      })
+      .then(docRef => {
+        console.log("Documento adicionado com ID: ", docRef.id);
+      })
+      .catch(error => {
+        console.error("Erro ao adicionar documento: ", error);
+      });
+
+      // Exemplo de uso: autenticar um usuário
+      auth.signInWithEmailAndPassword("email@example.com", "password")
+      .then((userCredential) => {
+        // Usuário autenticado
+        console.log("Usuário autenticado: ", userCredential.user);
+      })
+      .catch((error) => {
+        console.error("Erro na autenticação: ", error);
+      });
+    </script>
   </body>
 </html>
